@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: member-service
+  namespace: dg0416-lifesub-ns
+  labels:
+    app: member
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8081
+    protocol: TCP
+  selector:
+    app: member
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysub-service
+  namespace: dg0416-lifesub-ns
+  labels:
+    app: mysub
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8082
+    protocol: TCP
+  selector:
+    app: mysub
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: recommend-service
+  namespace: dg0416-lifesub-ns
+  labels:
+    app: recommend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8083
+    protocol: TCP
+  selector:
+    app: recommend

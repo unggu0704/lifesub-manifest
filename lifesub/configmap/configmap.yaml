@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: common-config
+  namespace: dg0416-lifesub-ns
+data:
+  # 공통 환경변수
+  ALLOWED_ORIGINS: "http://20.249.104.27"
+  JPA_DDL_AUTO: "update"
+  JPA_SHOW_SQL: "true"
+  LOG_LEVEL: "DEBUG"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: member-config
+  namespace: dg0416-lifesub-ns
+data:
+  # Member 서비스 환경변수
+  SERVER_PORT: "8081"
+  POSTGRE_HOST: "postgres-member-postgresql"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "member"
+  POSTGRES_USER: "dg0416"
+  JWT_ACCESS_TOKEN_VALIDITY: "3600000"
+  JWT_REFRESH_TOKEN_VALIDITY: "86400000"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysub-config
+  namespace: dg0416-lifesub-ns
+data:
+  # MySub 서비스 환경변수
+  SERVER_PORT: "8082"
+  POSTGRE_HOST: "postgres-mysub-postgresql"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "mysub"
+  POSTGRES_USER: "dg0416"
+  FEE_LEVEL_COLLECTOR: "50000"
+  FEE_LEVEL_ADDICT: "100000"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: recommend-config
+  namespace: dg0416-lifesub-ns
+data:
+  # Recommend 서비스 환경변수
+  SERVER_PORT: "8083"
+  POSTGRE_HOST: "postgres-recommend-postgresql"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "recommend"
+  POSTGRES_USER: "dg0416"

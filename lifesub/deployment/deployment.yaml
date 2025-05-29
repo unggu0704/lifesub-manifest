@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: member
+  namespace: dg0416-lifesub-ns
+  labels:
+    app: member
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: member
+  template:
+    metadata:
+      labels:
+        app: member
+    spec:
+      imagePullSecrets:
+      - name: acr-secret
+      containers:
+      - name: member
+        image: acrdigitalgarage03.azurecr.io/dg0416/member:1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
+        envFrom:
+        - configMapRef:
+            name: common-config
+        - configMapRef:
+            name: member-config
+        - secretRef:
+            name: common-secret
+        - secretRef:
+            name: member-secret
+        resources:
+          requests:
+            cpu: 256m
+            memory: 256Mi
+          limits:
+            cpu: 1024m
+            memory: 1024Mi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysub
+  namespace: dg0416-lifesub-ns
+  labels:
+    app: mysub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysub
+  template:
+    metadata:
+      labels:
+        app: mysub
+    spec:
+      imagePullSecrets:
+      - name: acr-secret
+      containers:
+      - name: mysub
+        image: acrdigitalgarage03.azurecr.io/dg0416/mysub:1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8082
+        envFrom:
+        - configMapRef:
+            name: common-config
+        - configMapRef:
+            name: mysub-config
+        - secretRef:
+            name: common-secret
+        - secretRef:
+            name: mysub-secret
+        resources:
+          requests:
+            cpu: 256m
+            memory: 256Mi
+          limits:
+            cpu: 1024m
+            memory: 1024Mi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommend
+  namespace: dg0416-lifesub-ns
+  labels:
+    app: recommend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: recommend
+  template:
+    metadata:
+      labels:
+        app: recommend
+    spec:
+      imagePullSecrets:
+      - name: acr-secret
+      containers:
+      - name: recommend
+        image: acrdigitalgarage03.azurecr.io/dg0416/recommend:1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8083
+        envFrom:
+        - configMapRef:
+            name: common-config
+        - configMapRef:
+            name: recommend-config
+        - secretRef:
+            name: common-secret
+        - secretRef:
+            name: recommend-secret
+        resources:
+          requests:
+            cpu: 256m
+            memory: 256Mi
+          limits:
+            cpu: 1024m
+            memory: 1024Mi

@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lifesub-ingress
+  namespace: dg0416-lifesub-ns
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: dg0416.20.249.191.180.nip.io
+    http:
+      paths:
+      - path: /api/auth
+        pathType: Prefix
+        backend:
+          service:
+            name: member-service
+            port:
+              number: 80
+      - path: /api/mysub
+        pathType: Prefix
+        backend:
+          service:
+            name: mysub-service
+            port:
+              number: 80
+      - path: /api/recommend
+        pathType: Prefix
+        backend:
+          service:
+            name: recommend-service
+            port:
+              number: 80
