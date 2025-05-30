@@ -34,7 +34,7 @@ spec:
             name: member-secret
         resources:
           requests:
-            cpu: 256m
+            cpu: 100m
             memory: 256Mi
           limits:
             cpu: 1024m
@@ -77,7 +77,7 @@ spec:
             name: mysub-secret
         resources:
           requests:
-            cpu: 256m
+            cpu: 100m
             memory: 256Mi
           limits:
             cpu: 1024m
@@ -120,7 +120,7 @@ spec:
             name: recommend-secret
         resources:
           requests:
-            cpu: 256m
+            cpu: 100m
             memory: 256Mi
           limits:
             cpu: 1024m
